@@ -1,3 +1,11 @@
-<p>
-  file-reader works!
-</p>
+<button mat-button
+        aria-label="Select a CSV File"
+        (click)="fileInput.click()">
+  Select a CVS file, or Drag & Drop the file here!
+</button>
+<input #fileInput
+       class="input--file"
+       type="file"
+       aria-label="Select a CSV file"
+       [attr.accept]="acceptTypes"
+       (change)="handleFileChange($event.target.files)" />
