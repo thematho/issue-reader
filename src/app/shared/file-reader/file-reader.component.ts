@@ -2,8 +2,9 @@ import { Component, Input, HostListener } from '@angular/core';
 import { Observable } from 'rxjs';
 
 export class FileHandler {
+  data: Observable<any>;
   onLoadFile(reader: FileReader): Observable<any> {
-    throw new Error('Implement for File Handler needs to be provided');
+    throw new Error('Implementation for File Handler needs to be provided');
   };
 }
 
@@ -17,7 +18,7 @@ export class FileReaderComponent {
   fileToUpload: File = null;
   fileReader: FileReader;
 
-  constructor(public fileHandler: FileHandler) { }
+  constructor(private fileHandler: FileHandler) { }
 
   @HostListener('dragover', ['$event'])
   @HostListener('dragenter', ['$event'])
@@ -32,7 +33,6 @@ export class FileReaderComponent {
   handleFileChange(files: FileList) {
     if (files.length) {
       this.fileToUpload = files[0];
-      console.log(this.fileToUpload.name);
       this.fileReader = new FileReader();
       this.fileReader.onload = this.onFileLoad.bind(this);
       this.fileReader.readAsText(this.fileToUpload, "UTF-8");
@@ -41,6 +41,4 @@ export class FileReaderComponent {
   onFileLoad(ev: ProgressEvent) {
     this.fileHandler.onLoadFile(this.fileReader);
   }
-
-
 }

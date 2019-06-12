@@ -1,6 +1,8 @@
-import { Component, OnInit, Inject } from '@angular/core';
+import { Component, OnInit, Inject, OnDestroy } from '@angular/core';
 import { IssueParserService } from '../../services/issue-parser.service';
 import { FileHandler } from 'src/app/shared/file-reader/file-reader.component';
+import { Issue } from '../../entities/Issue';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-issues',
@@ -10,11 +12,21 @@ import { FileHandler } from 'src/app/shared/file-reader/file-reader.component';
     provide: FileHandler, useClass: IssueParserService
   }]
 })
-export class IssuesComponent implements OnInit {
+export class IssuesComponent implements OnInit, OnDestroy {
+  issueList: Issue[];
+  subscription: Subscription;
 
-  constructor() { }
+  constructor(public issueService: FileHandler) { }
 
   ngOnInit() {
+    this.subscription = this.issueService.data.subscribe(issues => {
+      this.issueList = issues;
+    });
   }
+
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
+  }
+
 
 }
