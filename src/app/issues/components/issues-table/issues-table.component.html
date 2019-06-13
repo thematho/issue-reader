@@ -1,0 +1,23 @@
+<mat-form-field>
+    <input matInput
+           (keyup)="filter($event.target.value)"
+           placeholder="Filter">
+</mat-form-field>
+
+<table mat-table
+       matSort
+       [dataSource]="dataSource"
+       class="mat-elevation-z8">
+    <ng-container *ngFor="let col of columns"
+                  [matColumnDef]="col.key">
+        <th mat-header-cell
+            mat-sort-header
+            *matHeaderCellDef>{{col.header}} </th>
+        <td mat-cell
+            *matCellDef="let element"> {{element[col.key]}} </td>
+    </ng-container>
+    <tr mat-header-row
+        *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row
+        *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>
