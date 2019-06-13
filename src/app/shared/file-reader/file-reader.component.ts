@@ -1,9 +1,9 @@
-import { Component, Input, HostListener } from '@angular/core';
+import { Component, Input, HostListener, ViewChild, ElementRef } from '@angular/core';
 import { Observable } from 'rxjs';
 
 export class FileHandler {
   data: Observable<any>;
-  onLoadFile(reader: FileReader): Observable<any> {
+  onLoadFile(reader: FileReader): Promise<any> {
     throw new Error('Implementation for File Handler needs to be provided');
   };
 }
@@ -14,8 +14,11 @@ export class FileHandler {
   styleUrls: ['./file-reader.component.scss']
 })
 export class FileReaderComponent {
+  @ViewChild('fileInput', { static: false }) fileInputElement: ElementRef;
+
   @Input() label?: string = null;
   @Input('accept') acceptTypes?: string = null;
+
   fileToUpload: File = null;
   fileReader: FileReader;
 
@@ -40,6 +43,8 @@ export class FileReaderComponent {
     }
   }
   onFileLoad(ev: ProgressEvent) {
-    this.fileHandler.onLoadFile(this.fileReader);
+    this.fileHandler.onLoadFile(this.fileReader).catch((e) => {
+      this.fileInputElement.nativeElement.value = '';
+    });
   }
 }

@@ -2,7 +2,7 @@ import { Component, OnInit, Inject, OnDestroy } from '@angular/core';
 import { MatTableDataSource } from '@angular/material';
 import { Subscription } from 'rxjs';
 
-import { IssueParserService } from '../../services/issue-parser.service';
+import { IssueFileHandler } from '../../services/issue-file-handler.service';
 import { FileHandler } from 'src/app/shared/file-reader/file-reader.component';
 import { Issue } from '../../entities/Issue';
 
@@ -11,7 +11,7 @@ import { Issue } from '../../entities/Issue';
   templateUrl: './issues.component.html',
   styleUrls: ['./issues.component.scss'],
   viewProviders: [{
-    provide: FileHandler, useClass: IssueParserService
+    provide: FileHandler, useClass: IssueFileHandler
   }]
 })
 export class IssuesComponent implements OnInit, OnDestroy {
