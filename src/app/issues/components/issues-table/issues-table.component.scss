@@ -1,3 +1,5 @@
+@import "../../../shared/styles/media";
+
 :host {
     display: flex;
     flex-direction: column;
@@ -5,5 +7,19 @@
     .issues__filter {
         flex-grow: 1;
         padding: 0 1rem;
+    }
+
+    table {
+        width: 100%;
+    }
+}
+
+@media #{$mat-xs} {
+    :host {
+        .issues__filter {
+            position: sticky;
+            top: 0;
+            background: white;
+        }
     }
 }

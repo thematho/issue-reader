@@ -5,6 +5,10 @@
     flex-direction: column;
     align-items: center;
     padding: 2rem;
+
+    .issues__input-file {
+        margin: 1rem 0;
+    }
 }
 
 @media #{$mat-xs} {
@@ -18,6 +22,14 @@
 
         .issues__table {
             width: 100%;
+        }
+    }
+}
+
+@media #{$mat-gt-xs} {
+    :host {
+        .issues__table {
+            width: 500px;
         }
     }
 }
