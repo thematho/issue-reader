@@ -8,7 +8,7 @@ import { MatSnackBar } from '@angular/material';
 
 @Injectable()
 export class IssueFileHandler implements FileHandler {
-  private DATE_FORMAT: string = 'dd-MM-yyyy';
+  private DATE_FORMAT: string = 'dd/MM/yyyy';
 
   data: BehaviorSubject<Issue[]> = new BehaviorSubject<Issue[]>([]);
 
