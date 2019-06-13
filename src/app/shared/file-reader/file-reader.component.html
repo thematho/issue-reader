@@ -1,7 +1,8 @@
 <button mat-button
-        aria-label="Select a CSV File"
+        [attr.aria-label]="label ? label : 'Select a File'"
+        aria-label="Select a {{} File"
         (click)="fileInput.click()">
-  Select a CVS file, or Drag & Drop the file here!
+  {{label}}
 </button>
 <input #fileInput
        class="input--file"

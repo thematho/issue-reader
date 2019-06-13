@@ -1,0 +1,8 @@
+:host {
+    display: flex;
+    flex-direction: column;
+
+    .issues__filter {
+        flex-grow: 1;
+    }
+}

@@ -1,3 +1,4 @@
-<app-file-reader accept=".csv"></app-file-reader>
+<app-file-reader [label]="'Select a CVS file, or Drag & Drop the file here!'"
+                 accept=".csv"></app-file-reader>
 <app-issues-table *ngIf="issuesDataSource?.data.length"
                   [data]="issuesDataSource"></app-issues-table>

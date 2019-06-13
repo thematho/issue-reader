@@ -14,6 +14,7 @@ export class FileHandler {
   styleUrls: ['./file-reader.component.scss']
 })
 export class FileReaderComponent {
+  @Input() label?: string = null;
   @Input('accept') acceptTypes?: string = null;
   fileToUpload: File = null;
   fileReader: FileReader;
