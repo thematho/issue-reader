@@ -1,12 +1,14 @@
-<button mat-button
+<button class="file-reader__btn"
+        mat-button
         [attr.aria-label]="label ? label : 'Select a File'"
         aria-label="Select a {{} File"
         (click)="fileInput.click()">
   {{label}}
 </button>
 <input #fileInput
-       class="input--file"
-       type="file"
-       aria-label="Select a CSV file"
-       [attr.accept]="acceptTypes"
-       (change)="handleFileChange($event.target.files)" />
+       class="
+        input--file"
+        type="file"
+        aria-label="Select a CSV file"
+        [attr.accept]="acceptTypes"
+        (change)="handleFileChange($event.target.files)" />

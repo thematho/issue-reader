@@ -1,6 +1,23 @@
+@import '../../../shared/styles/media';
+
 :host {
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 1rem; 
+    padding: 2rem;
+}
+
+@media #{$mat-xs} {
+    :host {
+        padding: 1rem 0 0 0;
+
+        .issues__input-file {
+            width: 100%;
+            margin: 0 1rem;
+        }
+
+        .issues__table {
+            width: 100%;
+        }
+    }
 }

@@ -1,5 +1,9 @@
 :host {
-    display: block;
+    display: flex;
+
+    .file-reader__btn {
+        flex-grow: 1;
+    }
 
     .input--file {
         display: none;
