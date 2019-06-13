@@ -2,5 +2,6 @@
                   *ngIf="issuesDataSource?.data.length"
                   [data]="issuesDataSource"></app-issues-table>
 <app-file-reader class="issues__input-file"
+                 [ngClass]="{'input-file--large': issuesDataSource?.data?.length === 0}"
                  [label]="'Select a CVS file, or Drag & Drop the file here!'"
                  accept=".csv"></app-file-reader>

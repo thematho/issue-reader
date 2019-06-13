@@ -8,6 +8,10 @@
 
     .issues__input-file {
         margin: 1rem 0;
+
+        &.input-file--large {
+            height: 100px;
+        }
     }
 }
 
