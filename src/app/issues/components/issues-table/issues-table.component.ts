@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, ViewChild, OnChanges, SimpleChanges } from '@angular/core';
-import { MatTableDataSource, MatSort } from '@angular/material';
+import { MatTableDataSource, MatSort, MatPaginator } from '@angular/material';
 
 import { Issue } from '../../entities/Issue';
 
@@ -26,14 +26,14 @@ export class IssuesTableComponent implements OnInit, OnChanges {
   @Input('data') dataSource: MatTableDataSource<Issue> = new MatTableDataSource([]);
 
   @ViewChild(MatSort, { static: true }) sort: MatSort;
+  @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
 
   displayedColumns: string[] = this.columns.map(col => col.key);
 
   constructor() { }
 
-  filter(filterValue:string) {
-    this.dataSource.filter = filterValue.trim().toLowerCase();
-
+  filter(filterValue: string) {
+    this.dataSource.filter = filterValue;
   }
   ngOnInit() { }
 
@@ -41,6 +41,14 @@ export class IssuesTableComponent implements OnInit, OnChanges {
     for (let propName in changes) {
       if (propName === 'dataSource') {
         this.dataSource.sort = this.sort;
+        this.dataSource.paginator = this.paginator;
+        this.dataSource.filterPredicate = ((data: Issue, filter: string) => {
+          let filterNumber = Number(filter);
+          if (isNaN(filterNumber)) {
+            return true;
+          }
+          return data.issueCount <= filterNumber;
+        });
       }
     }
   }

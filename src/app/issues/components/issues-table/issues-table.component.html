@@ -1,23 +1,31 @@
 <mat-form-field class="issues__filter">
     <input matInput
+           type="number"
+           min="0"
+           step="1"
            (keyup)="filter($event.target.value)"
-           placeholder="Filter">
+           placeholder="Filter by minimal issue count">
 </mat-form-field>
+<div class="sticky-shadow"
+     role="none"></div>
 
-<table mat-table
-       matSort
-       [dataSource]="dataSource"
-       class="mat-elevation-z8">
-    <ng-container *ngFor="let col of columns"
-                  [matColumnDef]="col.key">
-        <th mat-header-cell
-            mat-sort-header
-            *matHeaderCellDef>{{col.header}} </th>
-        <td mat-cell
-            *matCellDef="let element"> {{element[col.key]}} </td>
-    </ng-container>
-    <tr mat-header-row
-        *matHeaderRowDef="displayedColumns"></tr>
-    <tr mat-row
-        *matRowDef="let row; columns: displayedColumns;"></tr>
-</table>
+<div class="mat-elevation-z8"
+     role="none">
+    <table mat-table
+           matSort
+           [dataSource]="dataSource">
+        <ng-container *ngFor="let col of columns"
+                      [matColumnDef]="col.key">
+            <th mat-header-cell
+                mat-sort-header
+                *matHeaderCellDef>{{col.header}} </th>
+            <td mat-cell
+                *matCellDef="let element"> {{element[col.key]}} </td>
+        </ng-container>
+        <tr mat-header-row
+            *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row
+            *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+    <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+</div>
