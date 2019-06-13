@@ -12,10 +12,8 @@
     table {
         width: 100%;
     }
-}
 
-@media #{$mat-xs} {
-    :host {
+    @media #{$mat-xs} {
         .issues__filter {
             position: sticky;
             top: 0;

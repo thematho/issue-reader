@@ -13,10 +13,8 @@
             height: 100px;
         }
     }
-}
 
-@media #{$mat-xs} {
-    :host {
+    @media #{$mat-xs} {
         padding: 1rem 0 0 0;
 
         .issues__input-file {
@@ -28,10 +26,8 @@
             width: 100%;
         }
     }
-}
 
-@media #{$mat-gt-xs} {
-    :host {
+    @media #{$mat-gt-xs} {
         .issues__table {
             width: 500px;
         }
